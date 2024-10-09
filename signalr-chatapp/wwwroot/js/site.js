@@ -9,6 +9,22 @@ const message = document.getElementById('message');
 const chat = document.getElementById('chat');
 const sendBtn = document.getElementById('sendBtn');
 
+// Store user colors
+const userColors = new Map();
+
+// Function to generate a random color
+const getRandomColor = () => {
+    return `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`;
+}
+
+// Function to assign a color to a user if they don't have one
+const assignUserColor = (username) => {
+    if (!userColors.has(username)) {
+        userColors.set(username, getRandomColor());
+    }
+    return userColors.get(username);
+}
+
 // toggle send btn state
 const toggleButtonState = () => {
     sendBtn.disabled = !user.value || !message.value;
@@ -62,7 +78,7 @@ sendBtn.addEventListener('click', sendMessage);
 message.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' && !sendBtn.disabled) {
         sendMessage();
-        event.preventDefault(); 
+        event.preventDefault();
     }
 });
 
@@ -70,10 +86,16 @@ message.addEventListener('keydown', (event) => {
 connection.on('ReceiveMessage', (user, message) => {
     const newMessage = document.createElement('div');
     const usernameSpan = document.createElement('span');
-    usernameSpan.classList.add('username');
-    usernameSpan.textContent = `${DOMPurify.sanitize(user)}:`;
+    const sanitizedUser = DOMPurify.sanitize(user);
+    const sanitizedMessage = DOMPurify.sanitize(message);
 
-    const messageText = document.createTextNode(` ${DOMPurify.sanitize(message)}`);
+    const userColor = assignUserColor(sanitizedUser);  // Assign color to user
+
+    usernameSpan.classList.add('username');
+    usernameSpan.style.color = userColor; // Apply color to username
+    usernameSpan.textContent = `${sanitizedUser}:`;
+
+    const messageText = document.createTextNode(` ${sanitizedMessage}`);
 
     newMessage.classList.add('message');
     newMessage.appendChild(usernameSpan);
