@@ -56,20 +56,26 @@ const startConnection = async () => {
 
 startConnection();
 
-// send message
+// Send message
 const sendMessage = async () => {
-    if (connection.state !== signalR.HubConnectionState.Connected) {
-        alert('Connection to chat hub is lost. Please try again later.');
-        return;
-    }
     try {
-        await connection.send('SendMessage', user.value, message.value);
-        message.value = '';
-        toggleButtonState();
+        // Kontrollera anslutningen och validera inmatningen
+        if (connection.state !== signalR.HubConnectionState.Connected) {
+            return alert('Connection to chat hub is lost. Please try again later.');
+        }
+
+        const trimmedUser = user.value.trim();
+        const trimmedMessage = message.value.trim();
+        if (!trimmedUser || !trimmedMessage) return;
+
+        // Skicka meddelandet
+        await connection.send('SendMessage', trimmedUser, trimmedMessage);
+        message.value = '';  // Töm meddelandefältet efter sändning
+        toggleButtonState(); // Uppdatera skicka-knappen efter att meddelandet är tömt
     } catch (err) {
-        console.error(err.toString());
+        console.error('Error sending message:', err);
     }
-}
+};
 
 // bind send button
 sendBtn.addEventListener('click', sendMessage);
