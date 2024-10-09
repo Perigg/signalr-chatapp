@@ -6,6 +6,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddSignalR();
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5274); // HTTP
+    options.ListenAnyIP(7152, listenOptions =>
+    {
+        listenOptions.UseHttps(); // HTTPS
+    });
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
