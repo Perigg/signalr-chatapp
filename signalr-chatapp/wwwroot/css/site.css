@@ -1,22 +1,116 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+/* Basic resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
 body {
-  margin-bottom: 60px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #2b2f77, #5a6eff);
+    color: #fff;
+}
+
+.container {
+    background-color: #1e1f4f;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    width: 80%; /* Set to 80% for larger screens */
+    max-width: 700px;
+    min-width: 350px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%; /* Adjust for smaller screens */
+    }
+}
+
+#chat-label, #name-label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: #aad1ff;
+}
+
+#chat {
+    background-color: #fff;
+    color: #000;
+    height: 300px;
+    overflow-y: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 0.9rem;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Aligns the chat messages to the left */
+}
+
+/* Input fields styling */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #000;
+    background-color: #eef2ff;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+    input[type="text"]::placeholder {
+        color: #888;
+    }
+
+/* Button styling */
+button {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(135deg, #5a6eff, #3a40b8);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+    button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+
+    button:hover:not(:disabled) {
+        background: linear-gradient(135deg, #768cff, #4d57c6);
+    }
+
+.message {
+    margin-bottom: 8px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    color: #000;
+    text-align: left; /* Ensure messages are aligned to the left */
+}
+
+.username {
+    font-weight: bold;
+    color: #2b2f77;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #2b2f77;
+    border-radius: 5px;
 }
