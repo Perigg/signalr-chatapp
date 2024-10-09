@@ -21,7 +21,7 @@ Follow these steps to get the application up and running:
 ### 1. Clone the Repository
 First, clone this repository to your local machine using Git:
 ```sh
-git clone https://github.com/yourusername/signalr-chatapp.git
+git clone https://github.com/Perigg/signalr-chatapp.git
 ```
 
 ### 2. Navigate to the Project Directory
