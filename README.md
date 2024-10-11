@@ -1,4 +1,4 @@
-![Picture of chatfunction](https://github.com/Perigg/signalr-chatapp/signalrchat.png)
+![Picture of chatfunction](https://github.com/Perigg/signalr-chatapp/blob/master/signalrchat.png)
 
 
 
