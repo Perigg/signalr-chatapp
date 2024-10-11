@@ -1,3 +1,7 @@
+![Picture of chatfunction](https://github.com/Perigg/signalr-chatapp/edit/master/signalrchat.png)
+
+
+
 # SignalR Chat Application
 
 ## Introduction
